@@ -8,43 +8,58 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var task = ""
-    @State var todoItems = [
-        TodoItem(title: "Somna", isCompleted: true),
-        TodoItem(title: "Vakna", isCompleted: true)
-    ]
+    
+    @StateObject var viewModel = TaskViewModel()
+    
+    @State var name = ""
+//    @State var id = 0
+//    @State var isCompleted = false
+//    @State var todoItems = [
+//        TodoItem(title: "Somna", isCompleted: true),
+//        TodoItem(title: "Vakna", isCompleted: true)
+//    ]
     
     var body: some View {
-        VStack {
-            Spacer()
-            Text("Katjas todo-app")
-            List {
-                ForEach(todoItems) { item in
-                    TodoItemView(todoItem: item, todoItems: $todoItems)
+        NavigationView {
+            VStack {
+                Spacer()
+                Text("Katjas todo-app")
+                List {
+                    ForEach(viewModel.tasks) { entity in
+                        VStack {
+                            Text(entity.name ?? "empty task")
+                            Button("Uppdatera") {
+                                viewModel.updateTask(task: entity, newName: name)
+                            }
+                        }
+                    }
                 }
-            }
-            .padding()
-            TextField("Ny uppgift", text: $task)
                 .padding()
-            Button("Lägg till uppgift") {
-                buttonFunction()
+                TextField("Ny uppgift", text: $name)
+                    .padding()
+                Button("Lägg till uppgift") {
+                    buttonFunction()
+                }
+                .padding()
+                .background(.blue)
+                .foregroundColor(.white)
+                .cornerRadius(20)
+            }
             }
             .padding()
-            .background(.blue)
-            .foregroundColor(.white)
-            .cornerRadius(20)
-        
-        }
-        .padding()
     }
+        
     
     func buttonFunction() {
-        todoItems.append(TodoItem(title: task, isCompleted: false))
-        task = ""
+        if name.isEmpty {
+            return
+        }
+        viewModel.addTask(name: name)
+        name = ""
     }
 }
 
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: TaskViewModel())
 }
