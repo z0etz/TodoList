@@ -38,18 +38,19 @@ class TaskViewModel: ObservableObject {
     }
     
     func updateTask(task: Task, newName: String) {
-        task.name = newName
-        
-        do {
-            try container.viewContext.save()
-            print("task updated")
-        } catch let error {
-            print("Error saving task: \(error)")
+        if newName != "" {
+            task.name = newName
+            do {
+                try container.viewContext.save()
+                print("task updated")
+            } catch let error {
+                print("Error saving task: \(error)")
+            }
+            saveData()
         }
-        saveData()
     }
     
-    func deletTask(entity: Task) {
+    func deleteTask(entity: Task) {
         container.viewContext.delete(entity)
         saveData()
     }

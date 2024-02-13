@@ -14,6 +14,7 @@
 		821F32682B7A5A70002BA90A /* TaskModelCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 821F32662B7A5A70002BA90A /* TaskModelCoreData.xcdatamodeld */; };
 		821F326A2B7A5B89002BA90A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F32692B7A5B89002BA90A /* Persistence.swift */; };
 		821F326C2B7A5CE7002BA90A /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F326B2B7A5CE7002BA90A /* TaskViewModel.swift */; };
+		821F32A62B7BC284002BA90A /* TaskItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F32A52B7BC284002BA90A /* TaskItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		821F32672B7A5A70002BA90A /* TaskModelCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskModelCoreData.xcdatamodel; sourceTree = "<group>"; };
 		821F32692B7A5B89002BA90A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		821F326B2B7A5CE7002BA90A /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
+		821F32A52B7BC284002BA90A /* TaskItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				821F32662B7A5A70002BA90A /* TaskModelCoreData.xcdatamodeld */,
 				821F32692B7A5B89002BA90A /* Persistence.swift */,
 				821F326B2B7A5CE7002BA90A /* TaskViewModel.swift */,
+				821F32A52B7BC284002BA90A /* TaskItemView.swift */,
 			);
 			path = TodoList;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821F32A62B7BC284002BA90A /* TaskItemView.swift in Sources */,
 				821F32682B7A5A70002BA90A /* TaskModelCoreData.xcdatamodeld in Sources */,
 				821F326C2B7A5CE7002BA90A /* TaskViewModel.swift in Sources */,
 				821F31F12B73926F002BA90A /* ContentView.swift in Sources */,

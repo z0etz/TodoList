@@ -10,47 +10,21 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var viewModel = TaskViewModel()
-    
-    @State var name = ""
+    @State private var name = ""
     
     var body: some View {
         NavigationView {
             VStack {
                 Text("Katjas todo-app")
-                    .padding()
                 
                 List {
-                    ForEach(viewModel.tasks) { entity in
-                        HStack {
-                            VStack {
-                                Text(entity.name ?? "empty task")
-                                HStack {
-                                    Spacer()
-                                    Text("Uppdatera")
-                                        .onTapGesture  {
-                                        viewModel.updateTask(task: entity, newName: name)
-                                    }
-                                    .padding()
-                                    .background(.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                    Text("Ta bort")
-                                        .onTapGesture {
-                                            viewModel.deletTask(entity: entity)
-                                        }
-                                    .padding()
-                                    .background(.pink)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                }
-                            }
-                        }
-                        
+                    ForEach($viewModel.tasks) { item in
+                        TaskItemView(task: item, viewModel: viewModel, editingName: $name)
                     }
                 }
                 .padding()
                 Spacer()
-                TextField("Ny uppgift", text: $name)
+                TextField("Ny uppgift / Nytt namn", text: $name)
                     .padding()
                 Button("Lägg till uppgift") {
                     buttonFunction()
