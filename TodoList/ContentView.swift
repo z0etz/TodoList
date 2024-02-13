@@ -12,29 +12,44 @@ struct ContentView: View {
     @StateObject var viewModel = TaskViewModel()
     
     @State var name = ""
-//    @State var id = 0
-//    @State var isCompleted = false
-//    @State var todoItems = [
-//        TodoItem(title: "Somna", isCompleted: true),
-//        TodoItem(title: "Vakna", isCompleted: true)
-//    ]
     
     var body: some View {
         NavigationView {
             VStack {
-                Spacer()
                 Text("Katjas todo-app")
+                    .padding()
+                
                 List {
                     ForEach(viewModel.tasks) { entity in
-                        VStack {
-                            Text(entity.name ?? "empty task")
-                            Button("Uppdatera") {
-                                viewModel.updateTask(task: entity, newName: name)
+                        HStack {
+                            VStack {
+                                Text(entity.name ?? "empty task")
+                                HStack {
+                                    Spacer()
+                                    Text("Uppdatera")
+                                        .onTapGesture  {
+                                        viewModel.updateTask(task: entity, newName: name)
+                                    }
+                                    .padding()
+                                    .background(.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    Text("Ta bort")
+                                        .onTapGesture {
+                                            viewModel.deletTask(entity: entity)
+                                        }
+                                    .padding()
+                                    .background(.pink)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                }
                             }
                         }
+                        
                     }
                 }
                 .padding()
+                Spacer()
                 TextField("Ny uppgift", text: $name)
                     .padding()
                 Button("Lägg till uppgift") {
@@ -45,10 +60,10 @@ struct ContentView: View {
                 .foregroundColor(.white)
                 .cornerRadius(20)
             }
-            }
-            .padding()
+        }
+        .padding()
     }
-        
+    
     
     func buttonFunction() {
         if name.isEmpty {

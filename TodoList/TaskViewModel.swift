@@ -49,6 +49,11 @@ class TaskViewModel: ObservableObject {
         saveData()
     }
     
+    func deletTask(entity: Task) {
+        container.viewContext.delete(entity)
+        saveData()
+    }
+    
     func saveData() {
         do {
             try container.viewContext.save()
